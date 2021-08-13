@@ -23,14 +23,11 @@ namespace Do_An_Tot_Nghiep
         [JsonProperty("ssid")]
         public string ssid { get; set; }
 
-        [JsonProperty("password")]
-        public string password { get; set; }
 
         [JsonProperty("streng")]
         public string streng { get; set; }
 
-       [JsonProperty("ip")]
-        public string ip { get; set; }
+
 
     
     }

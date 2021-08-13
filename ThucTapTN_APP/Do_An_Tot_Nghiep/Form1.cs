@@ -89,13 +89,13 @@ namespace Do_An_Tot_Nghiep
                 String stt = str_json.status;
                 String pos = str_json.pos;
                 String ssid = str_json.ssid;
-                String pass = str_json.password;
-             
+                String streng = str_json.streng; 
                 int position = Int32.Parse(pos);
                 int state = Int32.Parse(stt);
+                
 
                 control_render(position, state);
-                view_ssid(ssid);
+                view_ssid(ssid,streng);
 
 
             }
@@ -150,9 +150,11 @@ namespace Do_An_Tot_Nghiep
             }
         }
      
-        public void view_ssid(string ssid)
+        public void view_ssid(string ssid, string streng)
         {
             btn_State.render_state(label4, ssid);
+            btn_State.render_state(label5, streng);
+
         }
         
 
@@ -183,12 +185,12 @@ namespace Do_An_Tot_Nghiep
             {
                 if (label1.Text == "ON")
                 {
-                    string value = cmd.cmd1_on;
+                    string value = cmd.cmd1_off;
                     client.Publish("ngocphong260899/app", Encoding.UTF8.GetBytes(value), MqttMsgBase.QOS_LEVEL_EXACTLY_ONCE, true);
                 }
                 else if (label1.Text == "OFF")
                 {
-                    string value = cmd.cmd1_off;
+                    string value = cmd.cmd1_on;
                     client.Publish("ngocphong260899/app", Encoding.UTF8.GetBytes(value), MqttMsgBase.QOS_LEVEL_EXACTLY_ONCE, true);
                 }
             }

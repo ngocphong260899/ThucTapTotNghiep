@@ -8,14 +8,14 @@ namespace Do_An_Tot_Nghiep
 {
     class cmd_Json
     {
-        public  string cmd1_on = "{\"sw_wifi\": 1,\"pos\":1, \"status\":1 }";
-        public  string cmd2_on = "{\"sw_wifi\": 1,\"pos\":2, \"status\":1 }";
-        public  string cmd3_on = "{\"sw_wifi\": 1,\"pos\":3, \"status\":1 }";
-        public  string cmd1_off = "{\"sw_wifi\": 1,\"pos\":1, \"status\":0 }";
-        public  string cmd2_off = "{\"sw_wifi\": 1,\"pos\":2, \"status\":0 }";
-        public  string cmd3_off = "{\"sw_wifi\": 1,\"pos\":3, \"status\":0 }";
+        public  string cmd1_on  = "{\"sw_wifi\": 1,\"status\":1 }";
+        public  string cmd2_on  = "{\"sw_wifi\": 1,\"status\":3 }";
+        public  string cmd3_on  = "{\"sw_wifi\": 1,\"status\":5 }";
+        public  string cmd1_off = "{\"sw_wifi\": 1,\"status\":2 }";
+        public  string cmd2_off = "{\"sw_wifi\": 1,\"status\":4 }";
+        public  string cmd3_off = "{\"sw_wifi\": 1,\"status\":6 }";
 
-        public  string get_State_device = "{\"sw_wifi\": 2}";
+        public  string get_State_device = "{\"sw_wifi\":2}";
 
     }
 }
