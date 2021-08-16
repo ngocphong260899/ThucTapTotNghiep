@@ -10,7 +10,7 @@ static uint32_t time_handler_button_before = 0;
 void setup()
 {
     Serial.begin(115200);
-   // WiFi.begin(ssid,password);
+    //WiFi.begin(ssid,password);
     smart_config_init();
     led_btn_init();
     led_staus_start();
@@ -21,7 +21,8 @@ void setup()
 
     Serial.print("Debug_print: sys_init");
 
-    
+    Serial.println("Connect wifi:");
+    Serial.print( WiFi.localIP());
 }
 
 
@@ -42,6 +43,6 @@ void loop()
     {
         mqtt_loop();
     }
-    
+    //mqtt_loop();
     button_loop();
 }

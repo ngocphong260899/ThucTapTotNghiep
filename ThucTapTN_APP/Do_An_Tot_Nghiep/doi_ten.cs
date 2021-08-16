@@ -60,8 +60,8 @@ namespace Do_An_Tot_Nghiep
             jToken2.Replace(value3);
             jToken3.Replace(value4);
             string updatedJsonString = jObject.ToString();
-            File.WriteAllText(@"E:\Code_App\Do_An_Tot_Nghiep\Do_An_Tot_Nghiep\File\key_name.json", updatedJsonString);
-            File.Exists(@"E:\Code_App\Do_An_Tot_Nghiep\Do_An_Tot_Nghiep\File\key_name.json");
+            File.WriteAllText(@"E:\Thuc_Tap_Tot_Nghiep\ThucTapTN_APP\Do_An_Tot_Nghiep\File\key_name.json", updatedJsonString);
+            File.Exists(@"E:\Thuc_Tap_Tot_Nghiep\ThucTapTN_APP\Do_An_Tot_Nghiep\File\key_name.json");
         }
 
         public string data1;
@@ -84,7 +84,7 @@ namespace Do_An_Tot_Nghiep
 
         public void readFileJson()
         {
-            StreamReader r = new StreamReader(@"E:\Code_App\Do_An_Tot_Nghiep\Do_An_Tot_Nghiep\File\key_name.json");
+            StreamReader r = new StreamReader(@"E:\Thuc_Tap_Tot_Nghiep\ThucTapTN_APP\Do_An_Tot_Nghiep\File\key_name.json");
             string json_Data = r.ReadToEnd();
             Console.WriteLine("Data is: " + json_Data);
             remame_Json_key data_Parse_json = JsonConvert.DeserializeObject<remame_Json_key>(json_Data);

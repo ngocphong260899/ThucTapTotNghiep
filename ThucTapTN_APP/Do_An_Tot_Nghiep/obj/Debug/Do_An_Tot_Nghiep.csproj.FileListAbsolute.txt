@@ -174,3 +174,5 @@ E:\Thuc_Tap_Tot_Nghiep\ThucTapTN_APP\Do_An_Tot_Nghiep\obj\Debug\Do_An_Tot_Nghiep
 E:\Thuc_Tap_Tot_Nghiep\ThucTapTN_APP\Do_An_Tot_Nghiep\obj\Debug\Do_An_Tot_Nghiep.csproj.CopyComplete
 E:\Thuc_Tap_Tot_Nghiep\ThucTapTN_APP\Do_An_Tot_Nghiep\obj\Debug\Do_An_Tot_Nghiep.exe
 E:\Thuc_Tap_Tot_Nghiep\ThucTapTN_APP\Do_An_Tot_Nghiep\obj\Debug\Do_An_Tot_Nghiep.pdb
+E:\Thuc_Tap_Tot_Nghiep\ThucTapTN_APP\Do_An_Tot_Nghiep\bin\Debug\Sandwych.SmartConfig.dll
+E:\Thuc_Tap_Tot_Nghiep\ThucTapTN_APP\Do_An_Tot_Nghiep\bin\Debug\Sandwych.SmartConfig.pdb
