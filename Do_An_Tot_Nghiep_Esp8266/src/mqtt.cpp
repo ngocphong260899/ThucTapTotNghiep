@@ -69,9 +69,9 @@ void callback(char *p_toppic, uint8_t *p_data, unsigned int length)
 
     case GET_STT_IO:
     {
-        
+
         get_State_IO();
-       get_Wifi();
+        get_Wifi();
     }
     break;
     }
@@ -83,10 +83,7 @@ void mqtt_init()
     client.setCallback(callback);
 }
 
-
-void queueMsg(char* msg)
+void queueMsg(char *msg)
 {
-    client.publish(mqtt_topic_pub,msg);
+    client.publish(mqtt_topic_pub, msg);
 }
-
-

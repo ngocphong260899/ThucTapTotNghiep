@@ -22,8 +22,11 @@ namespace Do_An_Tot_Nghiep
         MqttClient client;
         get_Btn_state btn_State = new get_Btn_state();
         cmd_Json cmd = new cmd_Json();
-
+        DateTime data = DateTime.Now;
         string data_recv = string.Empty;
+        private int hours = 0;
+        private int mins = 0;
+        private int seconds = 0;
         public Form1()
         {
             InitializeComponent();
@@ -35,6 +38,12 @@ namespace Do_An_Tot_Nghiep
             string clientId = Guid.NewGuid().ToString();
             client.Connect(clientId, "ngocphong260899", "ngocphong260899");
             client.Subscribe(new string[] { "ngocphong260899/device" }, new byte[] { MqttMsgBase.QOS_LEVEL_AT_LEAST_ONCE });
+
+            if(client.IsConnected )
+            {
+                label13.Text = "Connect";
+                label13.ForeColor = Color.Green;
+            }    
         }
 
         public void get_State_device()
@@ -65,6 +74,7 @@ namespace Do_An_Tot_Nghiep
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            timer1.Start();
             readFileJson();
             mqtt_connect();
             get_State_device();
@@ -267,6 +277,95 @@ namespace Do_An_Tot_Nghiep
         private void Form1_Shown(object sender, EventArgs e)
         {
             
+        }
+
+        private void bunifuButton9_Click(object sender, EventArgs e)
+        {
+            String msg = numericUpDown1.Value + "hour" + numericUpDown2.Value +"minute"+" "+ "Trang thai:" + numericUpDown4.Value;
+
+            listBox1.Items.Add(msg);
+
+            if (numericUpDown2.Value < 1 && numericUpDown1.Value < 1)
+            {
+                MessageBox.Show("Bạn chưa nhập thời gian", "Thông báo!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+            else
+            {
+
+                timer2.Start();
+                timer1.Enabled = true;
+                bunifuButton9.Enabled = false;
+                bunifuButton10.Enabled = true;
+
+            }
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            label16.Text = DateTime.Now.ToString("HH:mm:ss");
+        }
+
+        private string formatHour(int s)
+        {
+            string t = s.ToString();
+            return s < 10 ? "0" + t : t;
+        }
+
+        private void timer2_Tick(object sender, EventArgs e)
+        {
+            String[] timetemplate = label16.Text.Split(':');
+            int hoursSys = Convert.ToInt32(timetemplate[0]);
+            int minsSys = Convert.ToInt32(timetemplate[1]);
+            int secSys = Convert.ToInt32(timetemplate[2]);
+
+            int hoursN = (int)numericUpDown1.Value;
+            int minsN = (int)numericUpDown2.Value;
+            int secN = 60;
+
+            hours = hoursN - hoursSys;
+            mins = minsN - minsSys - 1;
+            seconds = secN - secSys;
+            if (hours > 0 | mins > 0 | seconds > 0)
+            {
+                if (mins == 0 && hours > 0) { mins = 59; hours = hours - 1; }
+                if (seconds == 0 && mins > 0) { seconds = 60; mins = mins - 1; }
+                seconds = seconds - 1;
+            }
+
+
+
+            // Hiển thị thời gian còn lại
+            label17.Text = string.Format("{0}:{1}:{2}", formatHour(hours), formatHour(mins), formatHour(seconds));
+
+            if (label17.Text.Equals("00:00:00"))
+            {
+                Console.WriteLine("start timer");
+
+                switch(numericUpDown4.Value)
+                {
+                    case 1:
+                    {
+                            string value = cmd.cmd1_off;
+                            client.Publish("ngocphong260899/app", Encoding.UTF8.GetBytes(value), MqttMsgBase.QOS_LEVEL_EXACTLY_ONCE, true);
+                        }
+                    break;
+                }
+
+                
+                timer2.Stop();
+                bunifuButton9.Enabled = true;
+                bunifuButton10.Enabled = false;
+                label17.Text = "00:00:00";
+            }
+        }
+
+        private void bunifuButton10_Click(object sender, EventArgs e)
+        {
+            listBox1.Items.Clear();
+            timer2.Stop();
+            bunifuButton9.Enabled = true;
+            bunifuButton10.Enabled = false;
+            label17.Text = "00:00:00";
         }
     }
 }
