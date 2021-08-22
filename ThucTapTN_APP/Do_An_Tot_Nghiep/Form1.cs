@@ -15,8 +15,11 @@ using Newtonsoft.Json.Serialization;
 using Newtonsoft.Json.Converters;
 using Newtonsoft.Json;
 using System.IO;
+using AForge.Video;
+using AForge.Imaging;
 namespace Do_An_Tot_Nghiep
 {
+
     public partial class Form1 : Form
     {
         MqttClient client;
@@ -27,10 +30,23 @@ namespace Do_An_Tot_Nghiep
         private int hours = 0;
         private int mins = 0;
         private int seconds = 0;
+
+        MJPEGStream stream;
+
         public Form1()
         {
             InitializeComponent();
+            stream = new MJPEGStream("http://192.168.1.3:4747/video");
+            stream.NewFrame += Stream_NewFrame;
         }
+
+        private void Stream_NewFrame(object sender, NewFrameEventArgs eventArgs)
+        {
+            //throw new NotImplementedException();
+            Bitmap bmp = (Bitmap)eventArgs.Frame.Clone();
+            pictureBox1.Image = bmp;
+        }
+
         public void mqtt_connect()
         {
             client = new MqttClient("mqtt.ngoinhaiot.com", 1111, false, null, null, MqttSslProtocols.None);
@@ -74,6 +90,7 @@ namespace Do_An_Tot_Nghiep
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            stream.Start();
             timer1.Start();
             readFileJson();
             mqtt_connect();
