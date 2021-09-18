@@ -36,7 +36,7 @@ namespace Do_An_Tot_Nghiep
         public Form1()
         {
             InitializeComponent();
-            stream = new MJPEGStream("http://192.168.1.3:4747/video");
+            stream = new MJPEGStream("http://192.168.1.2:4747/video");
             stream.NewFrame += Stream_NewFrame;
         }
 
@@ -90,7 +90,7 @@ namespace Do_An_Tot_Nghiep
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            stream.Start();
+            //stream.Start();
             timer1.Start();
             readFileJson();
             mqtt_connect();

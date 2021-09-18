@@ -14,7 +14,6 @@ void setup()
 {
     Serial.begin(115200);
     WiFi.begin();
-
     if(WiFi.status() == WL_CONNECTED)
     {
         Serial.println("Connect wifi");
