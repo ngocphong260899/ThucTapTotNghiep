@@ -47,7 +47,7 @@ namespace Do_An_Tot_Nghiep
 
         public void change_Json_Value(String value1, string value2, string value3, string value4)
         {
-            string jsonString = File.ReadAllText(@"E:\Code_App\Do_An_Tot_Nghiep\Do_An_Tot_Nghiep\File\key_name.json");
+            string jsonString = File.ReadAllText(@"E:\Thuc_Tap_Tot_Nghiep\ThucTapTN_APP\Do_An_Tot_Nghiep\File\key_name.json");
             JObject jObject = Newtonsoft.Json.JsonConvert.DeserializeObject(jsonString) as JObject;
 
             JToken jToken = jObject.SelectToken("room_name");

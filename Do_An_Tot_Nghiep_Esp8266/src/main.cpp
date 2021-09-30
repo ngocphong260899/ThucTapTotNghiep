@@ -18,7 +18,7 @@ void setup()
     {
         Serial.println("Connect wifi");
     }
-    //smart_config_init();
+    smart_config_init();
     
     led_btn_init();
     led_staus_start();
