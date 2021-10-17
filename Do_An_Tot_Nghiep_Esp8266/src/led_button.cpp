@@ -11,16 +11,16 @@
 
 typedef enum
 {
-    LED1 = LED_BUILTIN,
-    LED2 = D2,
-    LED3 = D1
+    LED1 = D5,
+    LED2 = D6,
+    LED3 = D7
 } led;
 
 typedef enum
 {
-    BUTTON1 = D3,
-    BUTTON2 = D5,
-    BUTTON3 = D6
+    BUTTON1 = D1,
+    BUTTON2 = D2,
+    BUTTON3 = D3
 } button;
 
 typedef enum
@@ -132,7 +132,7 @@ void control_IO(int cmd)
     break;
     case CH1_OFF:
     {
-        gpio_off(LED_BUILTIN);
+        gpio_off(LED1);
         int stt = digitalRead(LED1);
         sprintf(msg, "{\"sw_wifi\":%d,\"pos\":%d,\"status\":%d}", 1, 1, stt);
         queueMsg(msg);

@@ -55,7 +55,10 @@ void exit_smart()
 
 void smart_config_init()
 {
-    ticker.attach(1, tick);
+
+    
+        ticker.attach(1, tick);
+    
 }
 
 void smart_config_loop()
@@ -71,7 +74,7 @@ void smart_config_loop()
         exit_smart();
         Serial.println("Connected, Exit smartconfig");
     }
-    if (millis() - lastPress > 70000)
+    if (millis() - lastPress > 10000 && WiFi.status() == WL_CONNECTED)
     {
         exit_smart();
         Serial.println(" Exit smartconfig");
