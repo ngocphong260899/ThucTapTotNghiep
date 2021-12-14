@@ -4,7 +4,7 @@
 #include <time.h>
 #include "led_button.h"
 #include "mqtt.h"
-#define LED1 LED_BUILTIN
+#define LED1 D0
 #define BUTTON1 D3
 
 #define LED_ON() digitalWrite(LED1, HIGH)
@@ -12,7 +12,7 @@
 #define LED_TOGGLE() digitalWrite(LED1, digitalRead(LED1) ^ 0x01)
 
 Ticker ticker;
-
+////led status config D16
 bool longPress()
 {
     static int lastPress = 0;

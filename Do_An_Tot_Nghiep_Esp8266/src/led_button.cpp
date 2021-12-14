@@ -43,13 +43,16 @@ void led_init()
     {
         pinMode(m_led[i], OUTPUT);
     }
+    pinMode(D0, OUTPUT);
 }
+
 void led_staus_start()
 {
     for (int i = 0; i < NUMBER_ARR; i++)
     {
         digitalWrite(m_led[i], HIGH);
     }
+    
 }
 
 void button_init()
@@ -98,7 +101,8 @@ void scan_button(uint8_t button_index)
         {
             if (button_index < 3)
             {
-                Serial.println("Button was press");
+                Serial.println("Button was press" );
+                Serial.print( button_index+1);
                 toggle_led(m_led[button_index]);
                 int stt = digitalRead(m_led[button_index]);
                 sprintf(msg, "{\"sw_wifi\":%d,\"pos\":%d,\"status\":%d}", 1, button_index+1, stt);
