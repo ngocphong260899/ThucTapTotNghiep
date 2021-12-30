@@ -87,6 +87,6 @@ void get_Wifi()
     char msg[100];
     String ssid = WiFi.SSID();
     int streng = WiFi.RSSI();
-    sprintf(msg, "{\"sw_wifi\":%d,\"pos\":%d,\"status\":%d,\"ssid\":\"%s\",\"streng\":%d}", 2, 0, 0, ssid, streng);
+    sprintf(msg, "{\"sw_wifi\":%d,\"pos\":%d,\"status\":%d,\"ssid\":\"%s\",\"streng\":%d}", 2, 0, 0, ssid.c_str(), streng);
     queueMsg(msg);
 }

@@ -52,7 +52,6 @@ void led_staus_start()
     {
         digitalWrite(m_led[i], HIGH);
     }
-    
 }
 
 void button_init()
@@ -101,11 +100,11 @@ void scan_button(uint8_t button_index)
         {
             if (button_index < 3)
             {
-                Serial.println("Button was press" );
-                Serial.print( button_index+1);
+                Serial.println("Button was press");
+                Serial.print(button_index + 1);
                 toggle_led(m_led[button_index]);
                 int stt = digitalRead(m_led[button_index]);
-                sprintf(msg, "{\"sw_wifi\":%d,\"pos\":%d,\"status\":%d}", 1, button_index+1, stt);
+                sprintf(msg, "{\"sw_wifi\":%d,\"pos\":%d,\"status\":%d}", 1, button_index + 1, stt);
                 queueMsg(msg);
             }
         }
@@ -188,15 +187,16 @@ void control_IO(int cmd)
     }
 }
 
-
 void get_State_IO()
 {
     char msg[100];
-    for(int i =0; i < 3; i++)
+    char msg1[100];
+    for (int i = 0; i < 3; i++)
     {
         int stt = digitalRead(m_led[i]);
-        sprintf(msg, "{\"sw_wifi\":%d,\"pos\":%d,\"status\":%d}", 1, i+1, stt);
-         queueMsg(msg);
+        sprintf(msg, "{\"sw_wifi\":%d,\"pos\":%d,\"status\":%d}", 1, i + 1, stt); // app windown
+        queueMsg(msg);
     }
-   
+    sprintf(msg1, "{\"sw_wifi\":%d,\"pos\":[%d,%d,%d]}", 2,digitalRead(m_led[0]),digitalRead(m_led[1]),digitalRead(m_led[2])); // app mobile
+    queueMsg(msg1);
 }
